@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ajax 2 - Local JSON</title>
+</head>
+<body>
+    <button id="button1">Get User</button>
+    <button id="button2">Get Users</button>
+<br><br>
+<h1>User</h1>
+<div id="user">
+
+</div>
+
+<h1>Users</h1>
+<div id="users">
+
+</div>
+
+
+    <script>
+     var user = document.getElementById('button1');
+       var users = document.getElementById('button2');
+
+       user.addEventListener('click', loadUser);
+       users.addEventListener('click', loadUsers);
+
+       function loadUser(){
+           var xhr = new XMLHttpRequest();
+           xhr.open('GET', 'user.json', true);
+
+           xhr.onload = function(){
+               if(this.status == 200){
+                   var userInfo = JSON.parse(this.responseText);
+
+                   var output = '';
+
+                //    ES5 WAY
+                   output += '<ul>' +
+                    '<li> ID:  '+userInfo.id+'</li>' + 
+                    '<li> ID:  '+userInfo.name+'</li>' + 
+                    '<li> ID:  '+userInfo.email+'</li>' + 
+                    '</ul>';
+
+                   document.getElementById('user').innerHTML = output;
+               }
+           }
+        //    In order to get any values from the JSON file, we need to wrap the responseText in a JSON.parse function, else our response will be undefined. E.g
+        // var userInfo = this.responseText;
+        // console.log(user.name) will result in an error unless this.responseText is JSON.parse(this.responseText).
+
+
+           xhr.send();
+       }
+
+
+
+       
+       function loadUsers(){
+           var xhr = new XMLHttpRequest();
+           xhr.open('GET', 'users.json', true);
+
+           xhr.onload = function(){
+               if(this.status == 200){
+                   var usersInfo = JSON.parse(this.responseText);
+
+                   var output = '';
+
+                //    ES5 WAY
+                for(var i in usersInfo){
+                   output += '<ul>' +
+                    '<li> ID:  '+usersInfo[i].id+'</li>' + 
+                    '<li> ID:  '+usersInfo[i].name+'</li>' + 
+                    '<li> ID:  '+usersInfo[i].email+'</li>' + 
+                    '</ul>';
+
+                }
+
+                   document.getElementById('users').innerHTML = output;
+               }
+           }
+
+           xhr.send();
+       }
+    </script>
+</body>
+</html>

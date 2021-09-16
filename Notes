@@ -1,0 +1,14 @@
+Asynchronous JavaScript And HTML
+AJAX is neither a language, a framework nor a library. It is a set of web technologies to send and receive data from client to a server asynchronously. 
+
+Client---- JS Call ----- AJAX Engine -------- XmlHttpRequest ---------- Server
+
+Server ---- XML/JSON ----- AJAX Engine ---------- HTML Response ------------ Client
+
+XHR is an API in form of an object. 
+XML stands for eXtensible Markup Language.
+
+
+2008 = 6
+2011 = 9
+(3 years)
